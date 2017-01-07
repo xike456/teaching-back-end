@@ -9,7 +9,7 @@ var multer = require('multer');
 var upload = multer({ dest: 'uploads/' });
 
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/teaching-game');
+mongoose.connect('mongodb://xquang:aloxinh123@ds145868.mlab.com:45868/teachinggame');
 require('./models/User');
 require('./models/Package');
 require('./models/Question');
@@ -91,7 +91,7 @@ app.use(function(err, req, res, next) {
   });
 });
 
-var server = require('http').createServer(app).listen(process.env.PORT || 3000);
+var server = require('http').createServer(app).listen(process.env.PORT || 8080);
 
 var io = require('socket.io').listen(server);
 
