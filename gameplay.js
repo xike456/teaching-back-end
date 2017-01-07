@@ -49,7 +49,7 @@ function playerLeaveRoom(sock) {
                 return player.username = sock.data.username;
             });
             if(player.length>0) {
-                room[0].players.splice(room[0].players.indexOf(player[0])-1, 1);
+                room[0].players.splice(room[0].players.indexOf(player[0]), 1);
                 io.sockets.in(sock.data.currentRoom.toString()).emit('playerLeaveRoom', room[0].players);
             }
         }
