@@ -54,7 +54,6 @@ function playerLeaveRoom(sock) {
             }
         }
     }
-
 }
 
 function answerQuestion(data) {
@@ -250,7 +249,7 @@ function joinGame(input) {
                 if(!gameRooms[i].players)
                     gameRooms[i].players = [];
                 var players = gameRooms[i].players.filter(function (player) {
-                    return player == sock.data.username;
+                    return player.username == sock.data.username;
                 });
                 if(gameRooms[i].isStarted) {
                     data.message = 'Join room fail. Game has been started';
