@@ -5,6 +5,15 @@ var mongoose = require('mongoose');
 var multer  = require('multer');
 var upload = multer({ dest: 'uploads/' });
 
+var cloudinary = require('cloudinary');
+
+cloudinary.config({
+    cloud_name: 'duqvgbkhv',
+    api_key: '746766614426462',
+    api_secret: '64P-Mc9548hWYoMBH4TJ8pu07pA'
+});
+
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
