@@ -144,7 +144,7 @@ function startGame() {
             room[0].isStarted = true;
             var deadline = new Date(Date.now());
             deadline.setSeconds(deadline.getSeconds()+20);
-            room[0].time = deadline.getTime();
+            room[0].time = deadline;
             var question = room[0].package.questions[room[0].currentIndex];
             setTimeout(function () {
                 var scores = [];
