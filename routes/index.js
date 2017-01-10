@@ -16,18 +16,27 @@ router.get('/uploads/:image', function (req, res, next) {
 
 
 router.post('/files', upload.single('image'), function (req, res, next) {
-  console.log(req.file);
-  if(req.file === undefined || req.file === null){
-    return res.json({
-      success: false,
-      message: "Error occurred"
-    })
-  }
-  var image = req.file.filename;
-  res.json({
-    success: true,
-    image: image
-  });
+    if(req.file === undefined || req.file === null){
+            return res.json({
+                success: false,
+                message: "Error occurred"
+            })
+        }
+	
+	cloudinary.uploader.upload(req.file.path, function(result) {
+        console.log(result);
+		if(result.error){
+			return res.json({
+                success: false,
+                message: "Invalid image file"
+            })
+		}
+        var image = result.url;
+        res.json({
+            success: true,
+            image: image
+        });
+    });
 });
 
 module.exports = router;
