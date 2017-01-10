@@ -456,16 +456,22 @@ router.delete('/profile/packages/:package/questions/:question', function (req, r
 });
 
 router.post('/file', upload.single('image'), function (req, res, next) {
-    cloudinary.uploader.upload(req.file.path, function(result) {
-        console.log(result);
-
-        if(req.file === undefined || req.file === null){
+    if(req.file === undefined || req.file === null){
             return res.json({
                 success: false,
                 message: "Error occurred"
             })
         }
-        var image = req.file.filename;
+	
+	cloudinary.uploader.upload(req.file.path, function(result) {
+        console.log(result);
+		if(result.error){
+			return res.json({
+                success: false,
+                message: "Invalid image file"
+            })
+		}
+        var image = result.url;
         res.json({
             success: true,
             image: image
